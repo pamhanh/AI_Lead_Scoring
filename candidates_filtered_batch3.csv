@@ -1,0 +1,8 @@
+domain,url,keep,robots_ok,js_heavy,text_len,n_fields_ok,phone,has_address,has_working_hours,has_contact_form,note
+nhakhoalongxuyen.vn,https://nhakhoalongxuyen.vn/,True,True,False,3564,3,0917 225 009,False,True,True,OK
+nhakhoavietmy.com.vn,https://nhakhoavietmy.com.vn/,True,True,False,18557,4,1900636734,True,True,True,OK
+nhakhoaador.com,https://nhakhoaador.com/,True,True,False,2680,3,0837446611,True,True,False,OK
+hethongnhakhoasaigon.vn,https://hethongnhakhoasaigon.vn/,True,True,False,5723,3,1900888997,True,False,True,OK
+nhakhoagiadinhbn.vn,https://nhakhoagiadinhbn.vn/,True,True,False,7896,4,0888518555,True,True,True,OK
+nhakhoabaoanh.vn,https://nhakhoabaoanh.vn/,False,True,True,0,0,,,,,nghi ngờ JS-heavy (chỉ 0 ký tự text tĩnh)
+vinsmile.vn,https://vinsmile.vn/,False,True,True,0,0,,,,,nghi ngờ JS-heavy (chỉ 0 ký tự text tĩnh)

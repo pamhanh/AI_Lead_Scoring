@@ -1,0 +1,42 @@
+domain,url,has_phone,has_address,has_working_hours,has_contact_form,has_online_booking,has_price_list,has_blog,has_blog_date,blog_updated_days,blog_is_recent,lead_score,lead_label
+nhakhoatrongrang.com,https://nhakhoatrongrang.com/,True,True,True,True,True,True,True,True,152,True,2,Cold
+nhakhoadangluu.com.vn,https://nhakhoadangluu.com.vn/,True,True,True,True,False,True,True,True,61,True,5,Cold
+nhakhoaparkway.com,https://nhakhoaparkway.com/,True,True,False,True,True,True,True,True,442,False,4,Cold
+elitedental.com.vn,https://elitedental.com.vn/,True,True,True,True,False,True,True,True,21,True,5,Cold
+nhakhoaquoctesg.vn,https://nhakhoaquoctesg.vn/,True,True,False,True,True,True,True,False,,False,4,Cold
+nhakhoanhantam.com,https://nhakhoanhantam.com/,True,True,True,True,False,True,True,True,1077,False,8,Hot
+nhakhoaident.com,https://nhakhoaident.com/,True,True,True,True,False,True,True,True,137,True,5,Cold
+lacvietdental.vn,https://lacvietdental.vn/,True,True,False,True,False,True,True,True,175,True,4,Cold
+nhakhoatamducsmile.com,https://nhakhoatamducsmile.com/,True,True,True,True,False,True,True,True,2,True,5,Cold
+updental.vn,https://updental.vn/,True,True,True,True,False,True,True,True,3980,False,8,Hot
+nhakhoathuyanh.com,https://nhakhoathuyanh.com/,True,True,False,True,False,True,True,True,1,True,4,Cold
+nhakhoathuyduc.com.vn,https://nhakhoathuyduc.com.vn/,True,True,False,True,False,True,True,True,10,True,4,Cold
+nhakhoasmileone.vn,https://nhakhoasmileone.vn/,True,True,False,True,False,False,True,True,18765,False,9,Hot
+tamdentist.vn,https://tamdentist.vn/,True,True,True,True,False,True,True,True,45,True,5,Cold
+nhakhoarangngoi.com,https://nhakhoarangngoi.com/,True,True,True,True,False,True,True,True,3092,False,8,Hot
+nhakhoatitan.com.vn,http://nhakhoatitan.com.vn/,True,True,False,True,False,True,True,False,,False,7,Warm
+nhakhoahappy.com.vn,https://nhakhoahappy.com.vn/,True,True,False,True,False,True,True,True,1734,False,7,Warm
+nhakhoadaisy.vn,https://nhakhoadaisy.vn/,True,True,False,True,True,True,True,True,76,True,1,Cold
+nhakhoaninhkieu.com,http://nhakhoaninhkieu.com/,True,True,True,False,False,True,True,True,1539,False,7,Warm
+nhakhoahoanmy.com.vn,https://nhakhoahoanmy.com.vn/,True,True,False,True,False,True,True,True,4725,False,7,Warm
+nhakhoaphapviethue.com,https://nhakhoaphapviethue.com/,True,True,True,True,False,False,True,True,690,False,10,Hot
+nhakhoavietnha.net,https://nhakhoavietnha.net/,True,True,False,True,False,True,False,False,,False,7,Warm
+nhakhoaimplantdanang.com,https://nhakhoaimplantdanang.com/,True,True,True,True,True,True,True,True,2,True,2,Cold
+nhakhoasing.vn,https://nhakhoasing.vn/,True,True,False,True,False,True,True,False,,False,7,Warm
+nhakhoanhatminh.com.vn,https://nhakhoanhatminh.com.vn/,True,True,True,True,False,True,True,True,822,False,8,Hot
+nhakhoavietduc.com,https://nhakhoavietduc.com/,True,True,True,True,False,True,True,False,,False,8,Hot
+nhakhoathienan.vn,https://nhakhoathienan.vn/,True,True,False,True,True,True,True,True,5060,False,4,Cold
+nhakhoabmtdrminh.com,https://nhakhoabmtdrminh.com/,True,True,True,True,False,True,True,True,342,False,8,Hot
+nhakhoasaigonquocte.net,https://nhakhoasaigonquocte.net/,True,True,True,True,False,True,True,True,1948,False,8,Hot
+nhakhoavietmy.com.vn,https://nhakhoavietmy.com.vn/,True,True,True,True,False,True,True,True,180,True,5,Cold
+nhakhoaador.com,https://nhakhoaador.com/,True,True,True,False,False,True,True,False,,False,7,Warm
+hethongnhakhoasaigon.vn,https://hethongnhakhoasaigon.vn/,True,True,False,True,False,True,True,True,28904,False,7,Warm
+nhakhoagiadinhbn.vn,https://nhakhoagiadinhbn.vn/,True,True,True,True,False,False,True,True,1396,False,10,Hot
+nhakhoaasia.com,https://nhakhoaasia.com/,True,False,False,True,False,True,True,True,14,True,,Không đủ điều kiện
+benhvienranghammatsg.vn,https://benhvienranghammatsg.vn/,True,False,False,True,False,True,False,False,,False,,Không đủ điều kiện
+ranghanoilangha.vn,https://ranghanoilangha.vn/,True,False,True,True,False,True,True,False,,False,,Không đủ điều kiện
+shinbi.vn,https://shinbi.vn/,True,False,False,True,False,True,True,False,,False,,Không đủ điều kiện
+nhakhoalinhxuan.com,https://nhakhoalinhxuan.com/,True,False,True,False,False,True,True,True,364,False,,Không đủ điều kiện
+nhakhoatandinh.com,https://nhakhoatandinh.com/,True,False,True,True,True,True,True,False,,False,,Không đủ điều kiện
+stdentist.com,https://stdentist.com/,True,False,False,True,False,False,True,False,,False,,Không đủ điều kiện
+nhakhoalongxuyen.vn,https://nhakhoalongxuyen.vn/,True,False,True,True,True,True,True,True,299,False,,Không đủ điều kiện

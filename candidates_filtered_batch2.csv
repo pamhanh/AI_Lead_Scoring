@@ -1,0 +1,14 @@
+domain,url,keep,robots_ok,js_heavy,text_len,n_fields_ok,phone,has_address,has_working_hours,has_contact_form,note
+nhakhoaphuongnam.vn,https://nhakhoaphuongnam.vn/,True,True,False,9145,2,0941944977,False,False,True,OK
+nhakhoasing.vn,https://nhakhoasing.vn/,True,True,False,4981,3,0866362266,True,False,True,OK
+nhakhoavietplus.com,https://nhakhoavietplus.com/,False,True,True,0,0,,,,,nghi ngờ JS-heavy (chỉ 0 ký tự text tĩnh)
+nhakhoadainam.vn,https://nhakhoadainam.vn/,False,True,True,0,0,,,,,nghi ngờ JS-heavy (chỉ 0 ký tự text tĩnh)
+nhakhoatandinh.com,https://nhakhoatandinh.com/,True,True,False,5541,3,0932678648,False,True,True,OK
+nhakhoanhatminh.com.vn,https://nhakhoanhatminh.com.vn/,True,True,False,3872,4,18008280,True,True,True,OK
+nhakhoavietduc.com,https://nhakhoavietduc.com/,True,True,False,8523,4,098.771.98.89,True,True,True,OK
+thammyvincos.com,https://thammyvincos.com/,False,True,True,0,0,,,,,nghi ngờ JS-heavy (chỉ 0 ký tự text tĩnh)
+stdentist.com,https://stdentist.com/,True,True,False,3442,2,02899988886,False,False,True,OK
+nhakhoathienan.vn,https://nhakhoathienan.vn/,True,True,False,6804,3,0262 388 6679,True,False,True,OK
+nhakhoadaklak.com,https://nhakhoadaklak.com/,False,True,True,399,0,,,,,nghi ngờ JS-heavy (chỉ 399 ký tự text tĩnh)
+nhakhoabmtdrminh.com,https://nhakhoabmtdrminh.com/,True,True,False,5387,4,0901304499,True,True,True,OK
+nhakhoasaigonquocte.net,https://nhakhoasaigonquocte.net/,True,True,False,7292,4,0917 66 3333,True,True,True,OK

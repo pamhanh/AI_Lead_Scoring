@@ -1,0 +1,31 @@
+domain,url,ghi_chu
+nhakhoatrongrang.com,https://nhakhoatrongrang.com/,SITE MẪU - đã test scraper_template_A.py PASS
+nhakhoadangluu.com.vn,https://nhakhoadangluu.com.vn/,WordPress xác nhận (WP Rocket) - chuỗi 9+ chi nhánh, có thể hơi lớn
+nhakhoakim.com,https://nhakhoakim.com/,chuỗi lớn nhiều chi nhánh - kiểm tra kỹ trước khi dùng
+nhakhoaparkway.com,https://nhakhoaparkway.com/,
+nhakhoaasia.com,https://nhakhoaasia.com/,
+elitedental.com.vn,https://elitedental.com.vn/,
+benhvienranghammatsg.vn,https://benhvienranghammatsg.vn/,tên có "bệnh viện" - có thể quy mô lớn hơn phòng khám nhỏ
+nhakhoaquoctesg.vn,https://nhakhoaquoctesg.vn/,
+nhakhoanhantam.com,https://nhakhoanhantam.com/,
+nhakhoaident.com,https://nhakhoaident.com/,
+lacvietdental.vn,https://lacvietdental.vn/,
+nhakhoatamducsmile.com,https://nhakhoatamducsmile.com/,
+updental.vn,https://updental.vn/,
+nhakhoathuyanh.com,https://nhakhoathuyanh.com/,
+nhakhoathuyduc.com.vn,https://nhakhoathuyduc.com.vn/,
+nhakhoasmileone.vn,https://nhakhoasmileone.vn/,
+tamdentist.vn,https://tamdentist.vn/,
+ranghanoilangha.vn,https://ranghanoilangha.vn/,
+nhakhoarangngoi.com,https://nhakhoarangngoi.com/,Cần Thơ
+nhakhoatitan.com.vn,http://nhakhoatitan.com.vn/,Cần Thơ - lưu ý http (không có https)
+nhakhoahappy.com.vn,https://nhakhoahappy.com.vn/,Cần Thơ
+nhakhoadaisy.vn,https://nhakhoadaisy.vn/,Cần Thơ
+nhakhoaninhkieu.com,http://nhakhoaninhkieu.com/,Cần Thơ - lưu ý http (không có https)
+shinbi.vn,https://shinbi.vn/,Hải Phòng
+nhakhoahoanmy.com.vn,https://nhakhoahoanmy.com.vn/,Hải Phòng
+nhakhoaphapviethue.com,https://nhakhoaphapviethue.com/,Huế
+nhakhoabinhduong.com,https://www.nhakhoabinhduong.com/,Bình Dương
+nhakhoavietnha.net,https://nhakhoavietnha.net/,Bình Dương
+nhakhoalinhxuan.com,https://nhakhoalinhxuan.com/,Bình Dương (Dĩ An)
+nhakhoaimplantdanang.com,https://nhakhoaimplantdanang.com/,Đà Nẵng
