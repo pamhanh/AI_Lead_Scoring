@@ -1,0 +1,678 @@
+{
+  "name": "Lead Scoring - Nha khoa (auto scan Google Sheet)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 15
+            }
+          ]
+        }
+      },
+      "id": "5b9fa078-d349-4456-8d17-6760cf81d44a",
+      "name": "Schedule Trigger1",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -3344,
+        864
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1i_RpMCc0Uk7v7A7No0tYU2kDCIjrqjkp09mO7K0KeO8",
+          "mode": "list",
+          "cachedResultName": "TTNT",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i_RpMCc0Uk7v7A7No0tYU2kDCIjrqjkp09mO7K0KeO8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i_RpMCc0Uk7v7A7No0tYU2kDCIjrqjkp09mO7K0KeO8/edit#gid=0"
+        },
+        "options": {}
+      },
+      "id": "de6015ce-493e-473d-80e4-8d38b8937a5a",
+      "name": "Get Rows1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -3120,
+        864
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "kauQwdBEL9xK3Irf",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "leftValue": "={{$json.status}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty"
+              },
+              "id": "9b1ff640-3aac-4ccd-8bc6-733745719dbd"
+            },
+            {
+              "leftValue": "={{$json.website}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              },
+              "id": "d7b62bad-a350-49cb-aafc-09bed4efd07e"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "196eaad6-d84c-4873-974a-1630818b82ff",
+      "name": "Filter: Chưa xử lý1",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2,
+      "position": [
+        -2896,
+        864
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Chuẩn hoá domain từ cột website để dùng làm khoá dedupe + gọi API\nconst out = [];\nfor (const item of $input.all()) {\n  let url = (item.json.website || '').toString().trim();\n  let domain = url\n    .replace(/^https?:\\/\\//i, '')\n    .replace(/^www\\./i, '')\n    .split('/')[0]\n    .toLowerCase();\n  item.json.domain = domain;\n  out.push(item);\n}\nreturn out;"
+      },
+      "id": "27a7766e-0b9b-49cc-b29b-f771f4077091",
+      "name": "Chuẩn hoá domain1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2672,
+        864
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "removeItemsSeenBefore"
+      },
+      "id": "94386b71-30cf-4139-a859-053f4b999f4d",
+      "name": "Remove Duplicates (domain)1",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        -2464,
+        864
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "0d8a4909-d7df-420c-9834-8bb7cb49e3a3",
+      "name": "Loop Over Items1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -2240,
+        864
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "id": "7e134d74-7f27-471d-8781-71681b542036",
+      "name": "Wait 2s1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -2016,
+        752
+      ],
+      "webhookId": "9df18b2c-07e4-4fc3-a5f7-df45d93805bc"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:5000/score",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"url\": $json.domain } }}",
+        "options": {}
+      },
+      "id": "baeccae6-a985-488c-a14d-87bd5b3ecc8d",
+      "name": "Gọi Model API1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1840,
+        608
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 1
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "leftValue": "={{$json.ok}}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d119a39f-1378-451e-858e-c11e7c133e78",
+      "name": "IF: ok?1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1584,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1i_RpMCc0Uk7v7A7No0tYU2kDCIjrqjkp09mO7K0KeO8",
+          "mode": "list",
+          "cachedResultName": "TTNT",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i_RpMCc0Uk7v7A7No0tYU2kDCIjrqjkp09mO7K0KeO8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i_RpMCc0Uk7v7A7No0tYU2kDCIjrqjkp09mO7K0KeO8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "matchingColumns": [
+            "row_number"
+          ],
+          "value": {
+            "row_number": "={{ $('Loop Over Items1').first().json.row_number }}",
+            "status": "done",
+            "domain": "={{$('Loop Over Items1').first().json.domain}}",
+            "qualified": "={{$json.qualified}}",
+            "lead_label": "={{$json.lead_label}}",
+            "prob_hot": "={{$json.probabilities ? $json.probabilities.Hot : ''}}",
+            "prob_warm": "={{$json.probabilities ? $json.probabilities.Warm : ''}}",
+            "prob_cold": "={{$json.probabilities ? $json.probabilities.Cold : ''}}",
+            "processed_at": "={{$now.toISO()}}"
+          },
+          "schema": [
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "website",
+              "displayName": "website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "domain",
+              "displayName": "domain",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "qualified",
+              "displayName": "qualified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "lead_label",
+              "displayName": "lead_label",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prob_hot",
+              "displayName": "prob_hot",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prob_warm",
+              "displayName": "prob_warm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prob_cold",
+              "displayName": "prob_cold",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "error_message",
+              "displayName": "error_message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "processed_at",
+              "displayName": "processed_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "e8eb7642-83d5-44d1-99ac-92032a08d15d",
+      "name": "Ghi kết quả (thành công)1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1376,
+        576
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "kauQwdBEL9xK3Irf",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1i_RpMCc0Uk7v7A7No0tYU2kDCIjrqjkp09mO7K0KeO8",
+          "mode": "list",
+          "cachedResultName": "TTNT",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i_RpMCc0Uk7v7A7No0tYU2kDCIjrqjkp09mO7K0KeO8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i_RpMCc0Uk7v7A7No0tYU2kDCIjrqjkp09mO7K0KeO8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "matchingColumns": [
+            "row_number"
+          ],
+          "value": {
+            "row_number": "={{ $('Loop Over Items1').first().json.row_number }}",
+            "status": "error",
+            "domain": "={{$('Loop Over Items1').first().json.domain}}",
+            "error_message": "={{$json.error}}",
+            "processed_at": "={{$now.toISO()}}"
+          },
+          "schema": [
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "website",
+              "displayName": "website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "domain",
+              "displayName": "domain",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "qualified",
+              "displayName": "qualified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "lead_label",
+              "displayName": "lead_label",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prob_hot",
+              "displayName": "prob_hot",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prob_warm",
+              "displayName": "prob_warm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prob_cold",
+              "displayName": "prob_cold",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "error_message",
+              "displayName": "error_message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "processed_at",
+              "displayName": "processed_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "e296aee8-c2f5-42ad-9249-fcf03de049d3",
+      "name": "Ghi kết quả (lỗi)1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1360,
+        864
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "kauQwdBEL9xK3Irf",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Get Rows1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Rows1": {
+      "main": [
+        [
+          {
+            "node": "Filter: Chưa xử lý1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter: Chưa xử lý1": {
+      "main": [
+        [
+          {
+            "node": "Chuẩn hoá domain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chuẩn hoá domain1": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates (domain)1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates (domain)1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait 2s1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 2s1": {
+      "main": [
+        [
+          {
+            "node": "Gọi Model API1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gọi Model API1": {
+      "main": [
+        [
+          {
+            "node": "IF: ok?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: ok?1": {
+      "main": [
+        [
+          {
+            "node": "Ghi kết quả (thành công)1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ghi kết quả (lỗi)1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ghi kết quả (thành công)1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ghi kết quả (lỗi)1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true
+  },
+  "versionId": "c6841db2-052e-4b4b-9472-b47776fff925",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "63819dd24c5bd3d7315fe1f6ebbd05cde445388f69deddea5272373d237ef66b"
+  },
+  "nodeGroups": [],
+  "id": "nfrBKhG7dh2je4LA",
+  "tags": []
+}
